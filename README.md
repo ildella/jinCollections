@@ -1,0 +1,4 @@
+jinCollections
+==============
+
+jIntention - jinCollections toolset

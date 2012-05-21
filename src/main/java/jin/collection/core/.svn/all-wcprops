@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/core
+END
+HasManyReadAccessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/core/HasManyReadAccessor.java
+END
+Operation.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/ildella/!svn/ver/126/jincollections/trunk/src/main/java/jin/collection/core/Operation.java
+END
+Criteria.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/ildella/!svn/ver/122/jincollections/trunk/src/main/java/jin/collection/core/Criteria.java
+END
+CollectionFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/core/CollectionFactory.java
+END
+Iter.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/ildella/!svn/ver/127/jincollections/trunk/src/main/java/jin/collection/core/Iter.java
+END
+NegateCriteria.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/core/NegateCriteria.java
+END
+ChainedOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/core/ChainedOperation.java
+END
+ReadAccessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/ildella/!svn/ver/126/jincollections/trunk/src/main/java/jin/collection/core/ReadAccessor.java
+END

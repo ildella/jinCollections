@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <groupId>net.java.dev.jintention</groupId>
+   <artifactId>jin-collections</artifactId>
+   <version>0.9.5-SNAPSHOT</version>
+
+   <name>jIntention Collections</name>
+   <url>http://jin-collection.dev.java.net</url>
+   <description>jin-collections is a library that helps working with standard Java Collections utility in a "Code by
+      Intenction" way. It is inspired from Smalltalk Collections Utility.</description>
+
+   <distributionManagement>
+      <repository>
+         <id>${cloudbees.id}-private-release-repository</id>
+         <url>dav:https://repository-${cloudbees.id}.forge.cloudbees.com/release</url>
+      </repository>
+      <snapshotRepository>
+         <id>${cloudbees.id}-private-snapshot-repository</id>
+         <url>dav:https://repository-${cloudbees.id}.forge.cloudbees.com/snapshot</url>
+      </snapshotRepository>
+   </distributionManagement>
+
+   <properties>
+      <compiler.source>1.5</compiler.source>
+      <compiler.target>1.5</compiler.target>
+   </properties>
+
+   <dependencies>
+      <dependency>
+         <groupId>commons-beanutils</groupId>
+         <artifactId>commons-beanutils</artifactId>
+         <version>1.8.3</version>
+      </dependency>
+      <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>4.10</version>
+      </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <inherited>true</inherited>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>attach-sources</id>
+                  <goals>
+                     <goal>jar</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>2.3.2</version>
+            <configuration>
+               <source>${compiler.source}</source>
+               <target>${compiler.target}</target>
+               <verbose>false</verbose>
+               <debug>false</debug>
+               <showDeprecation>false</showDeprecation>
+               <failOnError>true</failOnError>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+   <developers>
+      <developer>
+         <name>Lorenzo Bolzani</name>
+         <roles>
+            <role>founder</role>
+            <role>lead developer</role>
+         </roles>
+      </developer>
+      <developer>
+         <name>Daniele Dellafiore</name>
+         <roles>
+            <role>developer</role>
+         </roles>
+      </developer>
+   </developers>
+</project>

@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util
+END
+ByMethodCriteria.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/ByMethodCriteria.java
+END
+MapEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/MapEntry.java
+END
+PropertyReadAccessor.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/PropertyReadAccessor.java
+END
+NumberCriteriaFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/NumberCriteriaFactory.java
+END
+Sum.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/Sum.java
+END
+PropertyOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/PropertyOperation.java
+END
+PropertyCriteria.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/PropertyCriteria.java
+END
+Wrap.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/Wrap.java
+END
+WrappedGroupBy.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/WrappedGroupBy.java
+END
+PropertyUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/PropertyUtil.java
+END
+PropertyAccessException.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/PropertyAccessException.java
+END
+StringMapEntry.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/StringMapEntry.java
+END
+Sort.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/Sort.java
+END
+GroupBy.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/GroupBy.java
+END
+ReflectionUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/ildella/!svn/ver/113/jincollections/trunk/src/main/java/jin/collection/util/ReflectionUtil.java
+END

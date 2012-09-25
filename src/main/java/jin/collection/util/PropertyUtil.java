@@ -12,131 +12,139 @@ import java.lang.reflect.Method;
 
 import org.apache.commons.beanutils.BeanUtilsBean;
 
-/**
- * @author Administrator
- * 
- *         TODO To change the template for this generated type comment go to
- *         Window - Preferences - Java - Code Style - Code Templates
- */
 public class PropertyUtil {
 
-   public static boolean hasGetter(final String property, final Class type) {
-      final String methodName = "get" + capitalize(property);
-      try {
-         final Method m = type.getMethod(methodName, null);
-      } catch (final NoSuchMethodException e) {
-         return false;
-      }
-      return true;
-   }
+	private static PropertyUtil instance = new PropertyUtil();
 
-   static Object getPropertyByField(final Object element, final String property) {
-      try {
-         final Field declaredField = element.getClass().getDeclaredField(property);
-         declaredField.setAccessible(true);
-         return declaredField.get(element);
-      } catch (final Exception e) {
-         throw new RuntimeException("", e);
-      }
-   }
+	public static boolean hasGetter(final String property, final Class type) {
+		final String methodName = "get" + capitalize(property);
+		try {
+			final Method m = type.getMethod(methodName, null);
+		} catch (final NoSuchMethodException e) {
+			return false;
+		}
+		return true;
+	}
 
-   public static Object getProperty(final Object element, final String property) {
+	static Object getPropertyByField(final Object element, final String property) {
+		try {
+			final Field declaredField = element.getClass().getDeclaredField(property);
+			declaredField.setAccessible(true);
+			return declaredField.get(element);
+		} catch (final Exception e) {
+			throw new RuntimeException("", e);
+		}
+	}
 
-      try {
-         return BeanUtilsBean.getInstance().getPropertyUtils().getNestedProperty(element, property);
-      } catch (final IllegalAccessException e) {
-         throw new PropertyAccessException(e);
-      } catch (final InvocationTargetException e) {
-         throw new PropertyAccessException(e);
-      } catch (final NoSuchMethodException e) {
-         throw new PropertyAccessException(e);
-      }
+	public static Object getProperty(final Object element, final String property) {
+		return getInstance().getNestedProperty(element, property);
+	}
 
-      // try {
-      // return lookUpValue(element, property);
-      // } catch (final Exception e) {
-      // throw new RuntimeException(e);
-      // }
-   }
+	protected Object getNestedProperty(Object element, String property) {
 
-   private static Object lookUpValue(final Object element, final String property) throws Exception {
-      try {
-         final String propertyName = "get" + capitalize(property);
-         return getMethodResult(element, propertyName);
-      } catch (final NoSuchMethodException e1) {
-         try {
-            final String propertyName = "is" + capitalize(property);
-            return getMethodResult(element, propertyName);
-         } catch (final NoSuchMethodException e2) {
-            try {
-               return ReflectionUtil.getPrivateField(element, property);
-            } catch (final NoSuchFieldException e3) {
-               throw new RuntimeException("cannot find property " + property + " on object: " + element);
-            }
-         }
-      }
-   }
+		try {
+			return BeanUtilsBean.getInstance().getPropertyUtils().getNestedProperty(element, property);
+		} catch (final IllegalAccessException e) {
+			throw new PropertyAccessException(e);
+		} catch (final InvocationTargetException e) {
+			throw new PropertyAccessException(e);
+		} catch (final NoSuchMethodException e) {
+			throw new PropertyAccessException(e);
+		}
 
-   private static String capitalize(final String property) {
-      return Character.toUpperCase(property.charAt(0)) + property.substring(1);
-   }
+		// try {
+		// return lookUpValue(element, property);
+		// } catch (final Exception e) {
+		// throw new RuntimeException(e);
+		// }
+	}
 
-   static Object getMethodResult(final Object element, final String methodName) throws Exception {
-      return getMethodResult(element, methodName, null);
-   }
+	private static PropertyUtil getInstance() {
+		return instance;
+	}
 
-   static Object getMethodResult(final Object element, final String methodName, final Object param) throws Exception {
+	private static Object lookUpValue(final Object element, final String property) throws Exception {
+		try {
+			final String propertyName = "get" + capitalize(property);
+			return getMethodResult(element, propertyName);
+		} catch (final NoSuchMethodException e1) {
+			try {
+				final String propertyName = "is" + capitalize(property);
+				return getMethodResult(element, propertyName);
+			} catch (final NoSuchMethodException e2) {
+				try {
+					return ReflectionUtil.getPrivateField(element, property);
+				} catch (final NoSuchFieldException e3) {
+					throw new RuntimeException("cannot find property " + property + " on object: " + element);
+				}
+			}
+		}
+	}
 
-      Class[] classes = null;
-      Object[] params = null;
-      if (param != null) {
-         classes = new Class[] { param.getClass() };
-         params = new Object[] { param };
-      }
+	private static String capitalize(final String property) {
+		return Character.toUpperCase(property.charAt(0)) + property.substring(1);
+	}
 
-      // TODO: sistemare
-      final Method m = element.getClass().getMethod(methodName, classes);
-      m.setAccessible(true);
-      return m.invoke(element, params);
-   }
+	static Object getMethodResult(final Object element, final String methodName) throws Exception {
+		return getMethodResult(element, methodName, null);
+	}
 
-   public static void setProperty(final Object element, final String toProperty, final Object param) {
-      try {
-         // TODO: sistemare
-         Class[] classes = null;
-         Object[] params = null;
-         if (param != null) {
-            classes = new Class[] { param.getClass() };
-            params = new Object[] { param };
-         }
+	static Object getMethodResult(final Object element, final String methodName, final Object param) throws Exception {
 
-         final String propertyName = "set" + capitalize(toProperty);
-         final Method m = element.getClass().getMethod(propertyName, classes);
-         m.invoke(element, params);
-      } catch (final Exception e) {
-         throw new RuntimeException(e);
-      }
-   }
+		Class[] classes = null;
+		Object[] params = null;
+		if (param != null) {
+			classes = new Class[] { param.getClass() };
+			params = new Object[] { param };
+		}
 
-   public static String nullSafeGet(final Object element, final String property) {
-      String value = (String) getProperty(element, property);
-      if (value == null) {
-         value = "";
-      }
-      return value;
-   }
+		// TODO: sistemare
+		final Method m = element.getClass().getMethod(methodName, classes);
+		m.setAccessible(true);
+		return m.invoke(element, params);
+	}
 
-   public static Double getDouble(final Object element, final String property) {
-      return Double.valueOf((String) getProperty(element, property));
-   }
+	public static void setProperty(final Object element, final String toProperty, final Object param) {
+		try {
+			// TODO: sistemare
+			Class[] classes = null;
+			Object[] params = null;
+			if (param != null) {
+				classes = new Class[] { param.getClass() };
+				params = new Object[] { param };
+			}
 
-   public static Boolean getBoolean(final Object element, final String property) {
-      return Boolean.valueOf((String) getProperty(element, property));
-   }
+			final String propertyName = "set" + capitalize(toProperty);
+			final Method m = element.getClass().getMethod(propertyName, classes);
+			m.invoke(element, params);
+		} catch (final Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-   public static Object getInteger(final Object element, final String property) {
-      return Integer.valueOf((String) getProperty(element, property));
-   }
+	public static String nullSafeGet(final Object element, final String property) {
+		String value = (String) getProperty(element, property);
+		if (value == null) {
+			value = "";
+		}
+		return value;
+	}
+
+	public static Double getDouble(final Object element, final String property) {
+		return Double.valueOf((String) getProperty(element, property));
+	}
+
+	public static Boolean getBoolean(final Object element, final String property) {
+		return Boolean.valueOf((String) getProperty(element, property));
+	}
+
+	public static Object getInteger(final Object element, final String property) {
+		return Integer.valueOf((String) getProperty(element, property));
+	}
+
+	public static void setInstance(PropertyUtil propertyUtil) {
+		instance = propertyUtil;
+	}
 }
 
 /**

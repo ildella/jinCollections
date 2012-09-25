@@ -13,31 +13,31 @@ import jin.collection.core.ReadAccessor;
  */
 public class GroupBy {
 
-	private ReadAccessor accessor;
+	private final ReadAccessor accessor;
 
 	public GroupBy(final String property) {
 		this(new ReadAccessor() {
-			public Object getValue(Object element) {
+			public Object getValue(final Object element) {
 				return PropertyUtil.getProperty(element, property);
 			}
 		});
 	}
 
-	public GroupBy(ReadAccessor accessor) {
+	public GroupBy(final ReadAccessor accessor) {
 		this.accessor = accessor;
 	}
 
 	/**
 	 * Groups a new Map of Lists based on the property
 	 */
-	public Map runOn(Collection elements) {
+	public Map runOn(final Collection elements) {
 
 		return (Map) Iter.chain(elements, new HashMap(), new ChainedOperation() {
-			public Object execute(Object element, Object currValue) {
+			public Object execute(final Object element, final Object currValue) {
 
-				Map map = (Map) currValue;
+				final Map map = (Map) currValue;
 
-				Object propertyValue = accessor.getValue(element);
+				final Object propertyValue = accessor.getValue(element);
 				List propertyList = (List) map.get(propertyValue);
 				if (propertyList == null) {
 					propertyList = new ArrayList();
@@ -55,17 +55,21 @@ public class GroupBy {
 	 * @throws #{@link IllegalArgumentException} there is more than one value for
 	 *         the given property
 	 */
-	public Map map(List elements) {
+	public Map<String, Map> map(final Collection elements) {
+		return map(elements, false);
+	}
+
+	public Map<String, Map> map(final Collection elements, final boolean ignoreDuplicate) {
 		return (Map) Iter.chain(elements, new HashMap(), new ChainedOperation() {
-			public Object execute(Object element, Object currValue) {
+			public Object execute(final Object element, final Object currValue) {
 
-				Map map = (Map) currValue;
+				final Map map = (Map) currValue;
 
-				Object keyValue = accessor.getValue(element);
-				Object value = map.get(keyValue);
+				final Object keyValue = accessor.getValue(element);
+				final Object value = map.get(keyValue);
 				if (value == null) {
 					map.put(keyValue, element);
-				} else {
+				} else if (!ignoreDuplicate) {
 					throw new IllegalArgumentException("The list contains more than one object with key: " + keyValue);
 				}
 				return map;
